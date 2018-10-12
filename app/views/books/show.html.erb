@@ -1,0 +1,21 @@
+<h1><%= @book.title %></h1>
+<div id="authors">
+  Authors:
+  <ul>
+  <% @book.authors.each do |author| %>
+    <%= author.name %>
+  <% end %>
+  </ul>
+</div>
+
+<p>Published in <%= @book.year %>, <%= @book.pages %> pages.
+
+<div id="reviews">
+  <% @book.reviews.each do |review| %>
+    <div id="review-<%= review.id %>">
+      <%= review.user.name %> gave this <%= review.rating %> stars, and says: <em><%= review.title %></em><br/>
+      <%= review.description%>
+      <i>written <%= review.created_at %></i>
+    </div>
+  <% end %>
+</div>

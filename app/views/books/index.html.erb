@@ -1,0 +1,50 @@
+<h1>All Books</h1>
+
+<div id="stats">
+  <div id="best-books">
+    <h2>Highest Rated Books</h2>
+    <ul>
+    <% @best_books.each do |book| %>
+      <li><span class="best-book-title"><%= book.title %></span>, <%= book.rating %> stars</li>
+    <% end %>
+    </ul>
+  </div>
+  <div id="worst-books">
+    <h2>Lowest Rated Books</h2>
+    <ul>
+    <% @worst_books.each do |book| %>
+      <li><span class="worst-book-title"><%= book.title %></span>, <%= book.rating %> stars</li>
+    <% end %>
+    </ul>
+  </div>
+  <div id="reviewing-users">
+    <h2>Users who rate the most</h2>
+    <ul>
+    <% @reviewing_users.each do |user| %>
+      <li><span class="user-name"><%= user.name %></span>, <%= user.review_count %> reviews</li>
+    <% end %>
+    </ul>
+  </div>
+</div>
+
+<div id="all-books">
+<h2>Book Listing</h2>
+  <ul>
+    <li><%= link_to 'Sort By Average Rating, Low to High', books_path(key: :avgrating, dir: :asc) %></li>
+    <li><%= link_to 'Sort By Average Rating, High to Low', books_path(key: :avgrating, dir: :desc) %></li>
+    <li><%= link_to 'Sort By Page Count, Low to High', books_path(key: :pages, dir: :asc) %></li>
+    <li><%= link_to 'Sort By Page Count, High to Low', books_path(key: :pages, dir: :desc) %></li>
+    <li><%= link_to 'Sort By Review Count, Low to High', books_path(key: :revcount, dir: :asc) %></li>
+    <li><%= link_to 'Sort By Review Count, High to Low', books_path(key: :revcount, dir: :desc) %></li>
+  </ul>
+
+  <% @books.each do |book| %>
+  <div id="book-<%= book.id %>">
+  <span class="book-title"><%= book.title %></span>
+  Pages: <%= book.pages %>
+  Year: <%= book.year %>
+  Average Rating: <%= book.average_rating %>
+  Rating Count: <%= book.rating_count %>
+  </div>
+  <% end %>
+</div>
